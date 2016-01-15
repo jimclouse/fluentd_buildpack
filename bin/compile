@@ -4,23 +4,26 @@
 # fail fast
 set -e
 
-apt-get update
-apt-get clean
+sudo apt-get update
+sudo apt-get clean
 
-apt-get -y install curl libcurl4-openssl-dev ruby ruby-dev make build-essential
+sudo apt-get -y install curl libcurl4-openssl-dev ruby ruby-dev make build-essential
 
 # Install Fluentd.
-echo "deb http://packages.treasure-data.com/precise/ precise contrib" > /etc/apt/sources.list.d/treasure-data.list && \
-    apt-get update && \
-    apt-get install -y --force-yes libssl0.9.8 software-properties-common td-agent && \
-    apt-get clean
+export APT_SOURCES_FILE="treasure-data.list"
+echo "deb http://packages.treasure-data.com/precise/ precise contrib" > "/tmp/${APT_SOURCES_FILE}.tmp"
+sudo mv "/tmp/${APT_SOURCES_FILE}.tmp" "/etc/apt/sources.list.d/treasure-data.list"
+sudo apt-get update
+sudo apt-get install -y --force-yes libssl0.9.8 software-properties-common td-agent
+sudo apt-get clean
 export GEM_HOME="/usr/lib/fluent/ruby/lib/ruby/gems/1.9.1/"
 export GEM_PATH="/usr/lib/fluent/ruby/lib/ruby/gems/1.9.1/"
 export PATH="/usr/lib/fluent/ruby/bin:$PATH"
+sudo bash -c "GEM_HOME=/usr/lib/fluent/ruby/lib/ruby/gems/1.9.1/ && GEM_PATH=/usr/lib/fluent/ruby/lib/ruby/gems/1.9.1/ && PATH=/usr/lib/fluent/ruby/bin:\$PATH && \
 fluentd --setup=/etc/fluent && \
-    /usr/lib/fluent/ruby/bin/fluent-gem install fluent-plugin-elasticsearch \
-    fluent-plugin-secure-forward fluent-plugin-record-reformer fluent-plugin-exclude-filter && \
-    mkdir -p /var/log/fluent
+/usr/lib/fluent/ruby/bin/fluent-gem install fluent-plugin-elasticsearch fluent-plugin-secure-forward fluent-plugin-record-reformer fluent-plugin-exclude-filter && \
+mkdir -p /var/log/fluent \
+"
 
 # Copy fluentd config
 # ADD config/etc/fluent/fluent.conf /etc/td-agent/td-agent.conf
