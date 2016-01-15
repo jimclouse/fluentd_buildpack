@@ -24,6 +24,7 @@ fluentd --setup=/etc/fluent && \
 /usr/lib/fluent/ruby/bin/fluent-gem install fluent-plugin-elasticsearch fluent-plugin-secure-forward fluent-plugin-record-reformer fluent-plugin-exclude-filter && \
 mkdir -p /var/log/fluent \
 "
+sudo /etc/init.d/td-agent stop
 
 # Copy fluentd config
 # ADD config/etc/fluent/fluent.conf /etc/td-agent/td-agent.conf
