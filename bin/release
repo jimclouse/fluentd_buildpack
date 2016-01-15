@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# bin/release <build-dir>
+# Make sure that our storage device is a mounted EBS volume
+
+BUILD_DIR=$1
+
+cat << EOF
+---
+default_process_types:
+  web: "${MOUNT_TESTS} && /usr/share/elasticsearch/bin/elasticsearch -Des.path.conf=$HOME/app -Des.http.port=$PORT -Des.path.data=${DATA_DIRS}"
+EOF
