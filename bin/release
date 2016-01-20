@@ -7,5 +7,5 @@ BUILD_DIR=$1
 cat << EOF
 ---
 default_process_types:
-  web: "/usr/sbin/td-agent"
+  web: "/usr/sbin/td-agent -c /home/ubuntu/app/fluent.conf"
 EOF
