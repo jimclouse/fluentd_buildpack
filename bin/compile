@@ -21,7 +21,7 @@ export GEM_PATH="/usr/lib/fluent/ruby/lib/ruby/gems/1.9.1/"
 export PATH="/usr/lib/fluent/ruby/bin:$PATH"
 sudo bash -c "GEM_HOME=/usr/lib/fluent/ruby/lib/ruby/gems/1.9.1/ && GEM_PATH=/usr/lib/fluent/ruby/lib/ruby/gems/1.9.1/ && PATH=/usr/lib/fluent/ruby/bin:\$PATH && \
 fluentd --setup=/etc/fluent && \
-/usr/lib/fluent/ruby/bin/fluent-gem install fluent-plugin-elasticsearch fluent-plugin-secure-forward fluent-plugin-record-reformer fluent-plugin-exclude-filter fluent-plugin-curl && \
+/usr/lib/fluent/ruby/bin/fluent-gem install fluent-plugin-elasticsearch fluent-plugin-secure-forward fluent-plugin-record-reformer fluent-plugin-exclude-filter && \
 mkdir -p /var/log/fluent \
 "
 
