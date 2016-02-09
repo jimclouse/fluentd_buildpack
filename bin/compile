@@ -39,4 +39,4 @@ sudo apt-get -y install build-essential freetds-bin freetds-dev tdsodbc unixodbc
 sudo pip install pyodbc
 
 # put odbcinst.ini in place
-sudo cp -f $BINDIR/../conf/odbcinst.ini /etc/
+sudo cp -f $BINDIR/conf/odbcinst.ini /etc/
