@@ -33,3 +33,10 @@ sudo rm /etc/init.d/td-agent
 # Copy fluentd config
 # ADD config/etc/fluent/fluent.conf /etc/td-agent/td-agent.conf
 # ADD config/etc/fluent/fluent.conf /etc/fluent/fluent.conf
+
+# install tds and python dependencies
+sudo apt-get -y install build-essential freetds-bin freetds-dev tdsodbc unixodbc unixodbc-dev python-pip
+sudo pip install pyodbc
+
+# put odbcinst.ini in place
+sudo cp -f $BINDIR/../conf/odbcinst.ini /etc/
