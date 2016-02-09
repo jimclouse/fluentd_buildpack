@@ -38,5 +38,7 @@ sudo rm /etc/init.d/td-agent
 sudo apt-get -y install build-essential freetds-bin freetds-dev tdsodbc unixodbc unixodbc-dev python-pip
 sudo pip install pyodbc
 
+BINDIR=$(dirname "$0")
+
 # put odbcinst.ini in place
-ADD conf/odbcinst.ini /etc/odbcint.ini
+sudo cp -f $BINDIR/../conf/odbcinst.ini /etc/
